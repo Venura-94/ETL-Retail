@@ -5,27 +5,24 @@ from src.load.load import load_to_s3
 from src import logger
 
 STAGE_NAME = "Data Extraction stage"
-try:
-    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
-    df = extract_data(file_path)
-    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<")
-except Exception as e:
-    logger.exception(e)
+
+logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+df = extract_data(file_path)
+logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<")
 
 
 STAGE_NAME = "Data Transform stage"
-try:
-    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
-    df = transform_data(df)
-    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<")
-except Exception as e:
-    logger.exception(e)
+
+logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+df = transform_data(df)
+logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<")
 
 
 STAGE_NAME = "Data loading stage"
-try:
-    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
-    load_to_s3(df, bucket_name, folder_name, aws_access_key, aws_secret_key, file_name)
-    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<")
-except Exception as e:
-    logger.exception(e)
+
+logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+load_to_s3(df, bucket_name, folder_name, aws_access_key, aws_secret_key, file_name)
+logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<")
+
+
+
